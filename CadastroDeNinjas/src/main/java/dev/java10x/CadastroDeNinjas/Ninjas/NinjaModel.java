@@ -1,18 +1,29 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.Ninjas;
 
 
+import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
 public class NinjaModel {
 
-    @Id // uma anotação para dizer que o atributo logo abaixo é ele
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // é uma anotação para passarmos uma estrategia de como vamos gerar o id
-    Long id;
-    String nome;
-    int idade;
-    String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nome;
+
+    private int idade;
+
+    private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private MissoesModel missoes;
+
 
     public NinjaModel(){
     }
@@ -23,7 +34,7 @@ public class NinjaModel {
         this.email = email;
     }
 
-    public String getNomee() {
+    public String getNome() {
         return nome;
     }
 
